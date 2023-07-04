@@ -1,7 +1,4 @@
-package com.javaunit3.springmvc;
-
-import org.springframework.beans.factory.annotation.Qualifier;
-
+package com.javaunit3.springmvc.model;
 import javax.persistence.*;
 
 @Entity
@@ -22,36 +19,36 @@ public class MovieEntity {
   @Column(name = "genre")
   private String genre;
 
-  private Integer getId() {
+  public Integer getId() {
     return id;
   }
 
-  private void setId(Integer id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  private String getTitle() {
+  public String getTitle() {
     return title;
   }
 
-  private void setTitle() {
+  public void setTitle(String movieTitle) {
     this.title = title;
   }
 
-  private String getMaturityRating() {
+  public String getMaturityRating() {
     return maturityRating;
   }
 
-  private void setMaturityRating(String maturityRating) {
+  public void setMaturityRating(String maturityRating) {
     this.maturityRating = maturityRating;
   }
 
-  private String getGenre() {
+  public String getGenre() {
     return genre;
   }
 
-  private void setGenre() {
-    this.genre = genre;
+  public void setGenre(String genre) {
+    this.genre = this.genre;
   }
 
 }

@@ -1,21 +1,19 @@
 package com.javaunit3.springmvc;
 
+import com.javaunit3.springmvc.model.MovieEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MovieController {
 
   @Autowired
-  BestMovieService bestMovieService;
+  private BestMovieService bestMovieService;
 
   @Autowired
   private SessionFactory sessionFactory;
@@ -27,7 +25,7 @@ public class MovieController {
 
   @RequestMapping("/bestMovie")
   public String getBestMoviePage(Model model) {
-    model.addAttribute("BestMovie", bestMovieService.getBestMovie().getTitle());
+    model.addAttribute("bestMovie", bestMovieService.getBestMovie().getTitle());
       return "bestMovie";
       }
 
@@ -39,9 +37,8 @@ public class MovieController {
   @RequestMapping("/voteForBestMovie")
   public String voteForBestMovie(HttpServletRequest request, Model model) {
 
-    String movieTitle = request.getParameter("movieTitle");
-
-    model.addAttribute("BestMovieVote", movieTitle);
+    String movieId = request.getParameter("movieId");
+    String userName = request.getParameter("voterName");
 
     return "voteForBestMovie";
   }
@@ -52,26 +49,26 @@ public class MovieController {
     return "addMovie";
   }
 
-//   @RequestMapping("/addMovie")
-//   public String addMovie(HttpServletRequest request)  {
-//
-//     String movieTitle = request.getParameter("movieTitle");
-//     String maturityRating = request.getParameter("maturityRating");
-//     String genre = request.getParameter("genre");
-//
-//     MovieEntity movieEntity = new MovieEntity();
-//     movieEntity.setTitle(movieTitle);
-//     movieEntity.setMaturityRating(maturityRating);
-//     movieEntity.setGenre(genre);
-//
-//     Session session = sessionFactory.getCurrentSession();
-//
-//     session.beginTransaction();
-//
-//     session.save(movieEntity);
-//
-//     session.getTransaction().commit();
-//
-//     return "addMovie";
-//  }
+   @RequestMapping("/addMovie")
+   public String addMovie(HttpServletRequest request)  {
+
+     String movieTitle = request.getParameter("movieTitle");
+     String maturityRating = request.getParameter("maturityRating");
+     String genre = request.getParameter("genre");
+
+     MovieEntity movieEntity = new MovieEntity();
+     movieEntity.setTitle(movieTitle);
+     movieEntity.setMaturityRating(maturityRating);
+     movieEntity.setGenre(genre);
+
+     Session session = sessionFactory.getCurrentSession();
+
+     session.beginTransaction();
+
+     session.save(movieEntity);
+
+     session.getTransaction().commit();
+
+     return "addMovie";
+  }
 }
