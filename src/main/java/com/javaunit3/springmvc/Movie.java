@@ -10,4 +10,5 @@ public interface Movie {
   public String getMaturityRating();
 
   public String getGenre();
+
 }
