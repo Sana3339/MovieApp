@@ -1,7 +1,5 @@
 package com.javaunit3.springmvc;
 
-import com.javaunit3.springmvc.Movie;
-import com.javaunit3.springmvc.BestMovieService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -21,5 +19,4 @@ public class MovieApp {
     System.out.println("Maturity Rating: " + bestMovie.getMaturityRating());
     System.out.println("Genre: " + bestMovie.getGenre());
   }
-
 }
